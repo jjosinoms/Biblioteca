@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+	<div class="col-md-2">
+		<h1>Livros</h1>
+		<hr>
+	</div>
+</div>
+<div class="row">
+{% for livro in livro %}
+	<div class="col-md-4">
+			<a href="{% url 'detalhe' pk=livro.pk %}"><img src="../media/{{ livro.imagem }}" width="150px" height="100px"></a>
+			<br><br>
+			<p>Nome: {{ livro.nome }}  </p>
+			<p>Autor: {{ livro.autor }} {{ livro.autor.sobrenome }} </p>
+			<p>Editora: {{ livro.editora }} </p>
+			<hr>
+			<br>
+	</div>
+
+	{% endfor %}
+</div>
+
+{% endblock %}
