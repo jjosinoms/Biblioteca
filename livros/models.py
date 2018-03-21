@@ -25,8 +25,9 @@ class Livro(models.Model):
 	slug = models.SlugField('Atalho')
 	autor = models.ForeignKey(Autor)
 	editora = models.ForeignKey(Editora)
-	sinopse = models.TextField(max_length=300)
+	sinopse = models.TextField(max_length=500)
 	imagem = models.ImageField(upload_to = "media",blank=True)
+	file  = models.FileField()
 	def __str__(self):
 		return self.nome
 

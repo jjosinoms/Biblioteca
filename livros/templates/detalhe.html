@@ -14,7 +14,7 @@
 			<br>
 			<h4>Autor: {{ livro.autor }} {{ livro.autor.sobrenome }}</h4>
 			<h4>Editora: {{ livro.editora }}</h4>
-			
+			<h4> PDF: <a href="{{ livro.file.url }}"> Link </a></h4>
 		</div>
 	</div>
 {% endblock %}

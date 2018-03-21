@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+<h1>Cadastrar</h1>
+<hr><br>
+<form class="form-signin" method="post">
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+<center><div class="col-md-5">
+{% for field in form %}
+	{{ field.label_tag }}<br>
+	{{ field }}<br>
+	{{field.errors }}
+{% endfor %}<br><br>
+
+ <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button><br><br><br><br>
+ </div> </center> 
+ </div>
+
+      </form>
+{% endblock %}

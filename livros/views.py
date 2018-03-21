@@ -14,9 +14,8 @@ def cadastro(request):
 	if request.method == "POST":
 		formulario = CadastroLivro(request.POST)
 		if formulario.is_valid():
-			livro = formulario.save(commit=False)
+			livro = formulario.save(commit=True)
 			livro.save()
-			return redirect('/index.html')
 	else:
 		formulario = CadastroLivro()
 	return render(request, 'cadastro-livro.html', {"formulario":CadastroLivro()})
@@ -24,7 +23,7 @@ def cadastro(request):
 def busca(request):
 	nome_original = request.POST.get('busca') 
 	nome = nome_original
-	busca = Livro.objects.filter(slug=nome) or Livro.objects.filter(nome=nome)
+	busca = Livro.objects.filter(slug=nome) or Livro.objects.filter(nome=nome) 
 	return render(request, 'busca.html', {"busca":busca})
 
 def detalhe(request, pk):
