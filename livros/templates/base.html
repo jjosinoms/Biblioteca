@@ -1,0 +1,217 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Biblioteca</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/estilo.css">
+</head>
+<script type="text/javascript">
+  
+  $( document ).ready(function() {
+
+
+});
+</script>
+
+<style type="text/css">
+body{
+  background-image: url(http://www.momentosmagicos.pt/images/fundos/fundo.png);
+    /* Set a specific height */
+    height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.navbar-default{
+    background-image: url(http://w3.i.uol.com.br/Wap/2010/04/13/midia-indoor-aula-educacao-professora-maca-livros-ler-estudar-educar-biblioteca-material-escolar-ano-letivo-escola-livraria-colegio-biblioteca-conhecimento-aprender-leitura-1271193098417_956x500.jpg);
+
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+  #footer{
+  
+    background-color: white;
+  }
+#nome{
+  margin-left: 80px;
+  color: black;
+}
+#obs{
+  color:red;
+}
+
+</style>
+
+
+<body>
+	  <!-- Static navbar -->
+      <nav class="navbar navbar-default  ">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}" >Biblioteca</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{% url 'home' %}" id="home">Home</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'cadastro' %}">Cadastro de Livros</a></li>
+              {% endif %}
+              <li><a href="{% url 'accounts:login' %}">Entrar</a></li>
+              <li><a href="{% url 'accounts:register' %}">Cadastro</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'accounts:logout' %}">Sair</a></li>
+              {%endif%}
+
+
+              
+              <br><br>
+              <div class="row">
+              <div class="col-md-3">
+    <form method="post" action="{% url 'busca' %}">
+          {% csrf_token %}
+          <br>
+          <li><input name="busca" id="busca" class="typeahead form-control" type="text" placeholder="Buscar livro...." required="required"> </li>
+          <br>
+          <button type="submit" id='procurar' class="btn btn-primary">Buscar</button>
+          
+    </form>
+    </div>
+    <div class="col-md-4">
+      <h4>OBS: </h4><p id="obs">Digite " - "  ao invés de espaço, e evite letras maiúsculas e com acento!</p>
+    </div>
+    </div>
+              <br>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+<div class="container">
+              {% if user.is_authenticated %}
+                <h3>Seja Bem vindo {{ user.username }} !! =) <br><br>  </h3>
+              {% endif %}
+
+{% block content %}
+
+{% endblock %}
+<br><br>
+</div>
+      <!--Footer-->
+      <footer class="page-footer font-small stylish-color-dark pt-4 mt-4" id="footer">
+      
+          <!--Footer Links-->
+          <div class="container text-center text-md-left">
+      
+              <!-- Footer links -->
+              <div class="row text-center text-md-left mt-3 pb-3">
+      
+                  <!--First column-->
+                  <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">jonz</h6>
+                      <p>jonz é uma marca pessoal e tenho como intuito mostrar para as 
+                      pessoas quem sou e os projetos que faço.</p>
+                  </div>
+                  <!--/.First column-->
+      
+                  <hr class="w-100 clearfix d-md-none">
+      
+                  <!--Second column-->
+                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                      <p><a href="jonz.com.br/loja">jonzMarket</a></p>
+                      <p><a href="http://jonasjms.pythonanywhere.com">jonzBLOG</a></p>
+                      <p><a href="http://jonz.com.br">jonzSITE</a></p>
+                  </div>
+                  <!--/.Second column-->
+      
+                  <hr class="w-100 clearfix d-md-none">
+      
+                  <!--Third column-->
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                      <p><a href="#!">Your Account</a></p>
+                      <p><a href="#!">Become an Affiliate</a></p>
+                      <p><a href="#!">Shipping Rates</a></p>
+                      <p><a href="#!">Help</a></p>
+                  </div>
+                  <!--/.Third column-->
+      
+                  <hr class="w-100 clearfix d-md-none">
+      
+                  <!--Fourth column-->
+                  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                      <p><i class="fa fa-home mr-3"></i> Rio de Janeiro, RJ 1500, BR</p>
+                      <p><i class="fa fa-envelope mr-3"></i> jjosinoms@gmail.com</p>
+                      <p><i class="fa fa-phone mr-3"></i> + 21 98630 0507</p>
+                      <p><i class="fa fa-print mr-3"></i> + 21 2201 0197</p>
+                  </div>
+                  <!--/.Fourth column-->
+      
+              </div>
+              <!-- Footer links -->
+      
+              <hr>
+      
+              <div class="row py-3 d-flex align-items-center">
+      
+                  <!--Grid column-->
+                  <div class="col-md-8 col-lg-8">
+      
+                      <!--Copyright-->
+                      <p class="text-center text-md-left grey-text">© 2018 Copyright: <a href="https://mdbootstrap.com/material-design-for-bootstrap/"><strong> jonz.com.br</strong></a></p>
+                      <!--/.Copyright-->
+      
+                  </div>
+                  <!--Grid column-->
+      
+                  <!--Grid column-->
+                  <div class="col-md-4 col-lg-4 ml-lg-0">
+      
+                      <!--Social buttons-->
+                      <div class="text-center text-md-right">
+                          <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-facebook"></i></a></li>
+                              <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-twitter"></i></a></li>
+                              <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-google-plus"></i></a></li>
+                              <li class="list-inline-item"><a class="btn-floating btn-sm rgba-white-slight mx-1"><i class="fa fa-linkedin"></i></a></li>
+                          </ul>
+                      </div>
+                      <!--/.Social buttons-->
+      
+                  </div>
+                  <!--Grid column-->
+      
+              </div>
+      
+          </div>
+      
+      </footer>
+      <!--/.Footer-->
+                      
+</body>
+</html>

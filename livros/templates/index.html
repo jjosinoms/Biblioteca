@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+<script type="text/javascript">
+	
+	
+</script>
+<style type="text/css">
+
+
+	#livro{
+		background-color: white;
+		text-align: center;
+		padding-top: 20px;
+	}
+
+
+	#imagem {
+    padding: 35px;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+	#imagem:hover{
+		opacity: 0.8;
+		background-color: #F8F8F8;
+		padding: 1px;
+
+	}
+
+</style>
+
+<br><hr><br>
+<div class="row" >
+{% for livro in livro %}
+	<div class="col-md-3" >
+		<div id="livro">
+			<a href="{% url 'detalhe' pk=livro.pk %}"><img src="../media/{{ livro.imagem }}" width="150px" height="100px" id="imagem"></a>
+			<p>Nome: {{ livro.nome }}  </p>
+			<p>Autor: {{ livro.autor }} {{ livro.autor.sobrenome }} </p>
+			<p>Editora: {{ livro.editora }} </p>
+			<hr>
+			</div>
+      <hr>
+	</div>
+	{% endfor %}
+
+<div class="row" >
+<div class="col-md-12">
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="https://cdn.taschen.com/custom/taschen/includes/phpThumb/phpThumb.php/q=70;f=png;640;/media/images/640/menu_books_1507171125_id_970319.png" alt="Second slide" alt="Los Angeles" style="width:100%;height: 300px;">
+      </div>
+
+      <div class="item">
+        <img src=" https://lereumvicio.files.wordpress.com/2016/07/livro-na-chuva.gif?w=620" alt="Chicago" style="width:100%;height: 300px;">
+      </div>
+      <div class="item">
+        <img src=" https://images.huffingtonpost.com/2014-03-31-tumblr_mp0dx3cR7p1snj1x3o1_500-thumb.gif
+" alt="Chicago" style="width:100%;height: 300px;">
+      </div>
+      <div class="item">
+        <img src=" http://2.bp.blogspot.com/-6bYp0gBx7pM/T9URx47tCgI/AAAAAAAAAAs/ZV51r9uPwTw/s1600/o_menino_que_pic_011.gif" alt="Chicago" style="width:100%;height: 300px;">
+      </div>
+   
+      <div class="item">
+        <img src="http://www.livrosepessoas.com/wp-content/uploads/2016/07/uncle-fester.gif" alt="New york" style="width:100%; height: 300px;">
+      </div>
+    </div>
+    </a>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
