@@ -2,19 +2,17 @@
 
 {% block content %}
 <div class="row">
-<div class="col-md-3">
-<h1>Cadastro de Livro</h1>
-<hr>
-</div>
-</div>
-	<form method="POST">
-	{% csrf_token %}
-		{{ formulario }}
-		<br><br>
-			<br><br>
-			<button class="btn btn-primary">Cadastrar</button>
-		
-	</form>
+<h1>Cadastrar Livro</h1>
+<hr><br>
+<form class="form-signin" method="post" enctype="multipart/form-data">
+{% csrf_token %}
 
+<center><div class="col-md-5">
+{{ form.as_p }}
 
+ <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button><br><br><br><br>
+ </div> </center> 
+ </div>
+
+      </form>
 {% endblock %}

@@ -27,15 +27,6 @@ class Livro(models.Model):
 	editora = models.ForeignKey(Editora)
 	sinopse = models.TextField(max_length=500)
 	imagem = models.ImageField(upload_to = "media",blank=True)
-	file  = models.FileField()
+	file  = models.FileField(upload_to = "media/")
 	def __str__(self):
 		return self.nome
-
-class Usuario(models.Model):
-	nome = models.CharField(max_length=45)
-	sobrenome = models.CharField(max_length=45)
-	email = models.CharField('email', max_length=100)
-	senha = models.CharField('senha', max_length=40)
-
-	def __str__(self):
-		return self.email

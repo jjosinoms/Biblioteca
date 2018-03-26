@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Autor, Editora, Livro
 from .forms import CadastroLivro
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
 
 # Create your views here.
 def home(request):
@@ -10,15 +13,14 @@ def home(request):
 	return render(request, 'index.html', {"livro":livro})
 
 def cadastro(request):
-
-	if request.method == "POST":
-		formulario = CadastroLivro(request.POST)
-		if formulario.is_valid():
-			livro = formulario.save(commit=True)
-			livro.save()
-	else:
-		formulario = CadastroLivro()
-	return render(request, 'cadastro-livro.html', {"formulario":CadastroLivro()})
+    if request.method == 'POST':
+    	form = CadastroLivro(request.POST, request.FILES)
+    	if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+    	form = CadastroLivro()
+    return render(request, 'cadastro-livro.html', {"form":form})
 
 def busca(request):
 	nome_original = request.POST.get('busca') 
@@ -29,3 +31,5 @@ def busca(request):
 def detalhe(request, pk):
     livro = get_object_or_404(Livro, pk=pk)
     return render(request, 'detalhe.html', {'livro': livro})
+
+

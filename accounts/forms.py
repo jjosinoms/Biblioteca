@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+"""
 class RegisterForm(UserCreationForm):
 
 	email = forms.EmailField(label='E-mail')
@@ -10,3 +11,4 @@ class RegisterForm(UserCreationForm):
 		user.email = self.cleaned_data['email']
 		user.save()
 		return user
+"""

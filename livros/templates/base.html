@@ -56,7 +56,8 @@ body{
   color: black;
 }
 #obs{
-  color:red;
+  color:black;
+  background-color: lightgray;
 }
 
 </style>
@@ -80,7 +81,7 @@ body{
               <li class="active"><a href="{% url 'home' %}" id="home">Home</a></li>
               {% if user.is_authenticated %}
               <li><a href="{% url 'cadastro' %}">Cadastro de Livros</a></li>
-              {% endif %}
+              {% endif %}              
               <li><a href="{% url 'accounts:login' %}">Entrar</a></li>
               <li><a href="{% url 'accounts:register' %}">Cadastro</a></li>
               {% if user.is_authenticated %}
@@ -142,7 +143,7 @@ body{
                   <!--Second column-->
                   <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                       <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
-                      <p><a href="jonz.com.br/loja">jonzMarket</a></p>
+                      <p><a href="http://jonz.com.br/loja">jonzMarket</a></p>
                       <p><a href="http://jonasjms.pythonanywhere.com">jonzBLOG</a></p>
                       <p><a href="http://jonz.com.br">jonzSITE</a></p>
                   </div>
